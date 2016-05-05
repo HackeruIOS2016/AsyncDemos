@@ -15,6 +15,7 @@
 		6D6952381CDB1DDD0007970C /* Queues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6952371CDB1DDD0007970C /* Queues.swift */; };
 		6D69523B1CDB3BB90007970C /* PumpkinGrower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69523A1CDB3BB90007970C /* PumpkinGrower.swift */; };
 		6D69523D1CDB56DF0007970C /* RedditDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69523C1CDB56DF0007970C /* RedditDataSource.swift */; };
+		6D6952401CDB6C3B0007970C /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D69523F1CDB6C3B0007970C /* Reddit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		6D6952371CDB1DDD0007970C /* Queues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queues.swift; sourceTree = "<group>"; };
 		6D69523A1CDB3BB90007970C /* PumpkinGrower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpkinGrower.swift; sourceTree = "<group>"; };
 		6D69523C1CDB56DF0007970C /* RedditDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedditDataSource.swift; sourceTree = "<group>"; };
+		6D69523F1CDB6C3B0007970C /* Reddit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				6D69523A1CDB3BB90007970C /* PumpkinGrower.swift */,
+				6D69523F1CDB6C3B0007970C /* Reddit.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D69523B1CDB3BB90007970C /* PumpkinGrower.swift in Sources */,
+				6D6952401CDB6C3B0007970C /* Reddit.swift in Sources */,
 				6D6952281CDB19220007970C /* ViewController.swift in Sources */,
 				6D6952381CDB1DDD0007970C /* Queues.swift in Sources */,
 				6D6952261CDB19220007970C /* AppDelegate.swift in Sources */,

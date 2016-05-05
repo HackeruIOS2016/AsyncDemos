@@ -9,27 +9,54 @@
 import UIKit
 
 class RedditDataSource{
-    func simpleDemo(){
-       let session = NSURLSession.sharedSession()
-       
+    
+    let session = NSURLSession.sharedSession()
+    
+    
+    func getReddits(done:([Reddit]?, error:NSError?)->()){
+
         guard let url = NSURL(string: "https://www.reddit.com/r/funny/.json") else {return}
         
         let task = session.dataTaskWithURL(url) { (data, response, error) -> Void in
             
-            let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-            
-            let otherjson = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-            
-            do{
-                let json2 = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+            if let data = data {
+               let result =  self.parseJson(data)
                 
-                print(json2)
+                dispatch_async(Queues.main, { () -> Void in
+                    done(result, error: nil)
+                })
             }
-            catch let error as NSError{
-                print(error.description)
+            else if let error = error{
+                dispatch_async(Queues.main, { () -> Void in
+                    done(nil, error: error)
+                })
             }
         }
         
         task.resume() // task.suspend() task.cancel()
+    }
+    
+    func parseJson(data:NSData)->[Reddit]?{
+        do{
+            var redditsArr = [Reddit]()
+            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
+            
+            let reddits = json["data"]!!["children"] as! NSArray
+            for reddit in reddits{
+                let title = reddit["data"]!!["title"] as! String
+                let url = reddit["data"]!!["url"] as! String
+                let thumbnail = reddit["data"]!!["thumbnail"] as! String
+                
+                let reddit = Reddit(title: title, thumbnail: url, url: thumbnail)
+                redditsArr.append(reddit)
+            }
+            return redditsArr
+            
+            //print(json)
+        }
+        catch let error as NSError{
+            print(error.description)
+            return nil
+        }
     }
 }
