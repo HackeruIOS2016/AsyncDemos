@@ -24,22 +24,28 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Z8g-JW-hAx">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xKU-lu-k5p">
-                                <rect key="frame" x="225" y="360" width="150" height="2"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Hf-5U-plG">
+                                <rect key="frame" x="225" y="318" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="lzl-cg-U9S"/>
+                                </constraints>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="9Hf-5U-plG" firstAttribute="top" secondItem="Z8g-JW-hAx" secondAttribute="bottom" constant="8" id="0iy-UP-8C2"/>
                             <constraint firstItem="FvV-Pd-Qk0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3ZY-b4-rBA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FvV-Pd-Qk0" secondAttribute="trailing" id="A7s-yb-psF"/>
                             <constraint firstItem="Z8g-JW-hAx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vxi-Z4-XB1"/>
                             <constraint firstItem="Z8g-JW-hAx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="WV9-S8-qDI"/>
+                            <constraint firstItem="9Hf-5U-plG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WiM-MG-4rP"/>
                             <constraint firstItem="FvV-Pd-Qk0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="XD7-Z8-rZY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FvV-Pd-Qk0" secondAttribute="bottom" id="gzc-ay-6O0"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Z8g-JW-hAx" id="PEb-sx-5HJ"/>
+                        <outlet property="progress" destination="9Hf-5U-plG" id="hkt-9E-1Sv"/>
                         <outlet property="pumpkinImageView" destination="FvV-Pd-Qk0" id="893-r4-jQ1"/>
                     </connections>
                 </viewController>

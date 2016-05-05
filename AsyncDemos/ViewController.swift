@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var progress: UIProgressView!
     @IBOutlet weak var pumpkinImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
@@ -20,7 +21,10 @@ class ViewController: UIViewController {
         activityIndicator.startAnimating()
         
         dispatch_async(Queues.userInteractive) {
-           let pumpkin = self.growPumpkin()
+            let pumpkin = self.growPumpkin({ (p) -> () in
+                self.progress.progress = p
+                
+            })
            
             //updating the UI must run on UI Thread!!!
             dispatch_async(Queues.main, { () -> Void in
@@ -39,9 +43,19 @@ class ViewController: UIViewController {
 
 
     
-    func growPumpkin()->UIImage?{
+    func growPumpkin(progressBlock: (Float)->())->UIImage?{
         for i in 0...1000000{
-            print("\(Float(i)/1000000 * 100 )percent")
+            
+            let progress =  Float(i)/1000000
+            print("\(progress * 100) percent")
+           
+            if i % 100 == 0{
+                dispatch_async(Queues.main, { () -> Void in
+                    progressBlock(progress)
+                })
+                //report the progress
+               
+            }
         }
         return UIImage(named: "pumpkin")
     }
