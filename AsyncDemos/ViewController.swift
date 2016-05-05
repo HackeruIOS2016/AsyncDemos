@@ -28,7 +28,16 @@ class ViewController: UIViewController, PumpkinDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource.simpleDemo()
+     
+        
+        dataSource.getReddits { (reddits, error) -> () in
+            if let reddits = reddits{
+                print(reddits)
+            }
+            else if let error = error{
+                print(error.description)
+            }
+        }
     }
 
 }

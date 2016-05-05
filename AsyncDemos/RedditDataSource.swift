@@ -10,7 +10,7 @@ import UIKit
 
 class RedditDataSource{
     
-    let session = NSURLSession.sharedSession()
+    private let session = NSURLSession.sharedSession()
     
     
     func getReddits(done:([Reddit]?, error:NSError?)->()){
@@ -36,7 +36,7 @@ class RedditDataSource{
         task.resume() // task.suspend() task.cancel()
     }
     
-    func parseJson(data:NSData)->[Reddit]?{
+    private func parseJson(data:NSData)->[Reddit]?{
         do{
             var redditsArr = [Reddit]()
             let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
