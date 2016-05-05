@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, PumpkinDelegate {
 
+    let dataSource = RedditDataSource()
+    
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var pumpkinImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -26,9 +28,7 @@ class ViewController: UIViewController, PumpkinDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let grower = PumpkinGrower()
-        grower.growPumpkin(self)
+        dataSource.simpleDemo()
     }
 
 }

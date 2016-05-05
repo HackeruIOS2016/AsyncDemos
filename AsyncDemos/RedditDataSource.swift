@@ -14,9 +14,22 @@ class RedditDataSource{
        
         guard let url = NSURL(string: "https://www.reddit.com/r/funny/.json") else {return}
         
-       let task = session.dataTaskWithURL(url) { (data, response, error) -> Void in
-            print(response)
-            print(data)
+        let task = session.dataTaskWithURL(url) { (data, response, error) -> Void in
+            
+            let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+            
+            let otherjson = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+            
+            do{
+                let json2 = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                
+                print(json2)
+            }
+            catch let error as NSError{
+                print(error.description)
+            }
         }
+        
+        task.resume() // task.suspend() task.cancel()
     }
 }
