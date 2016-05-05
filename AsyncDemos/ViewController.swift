@@ -8,56 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PumpkinDelegate {
 
-    @IBOutlet weak var progress: UIProgressView!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var pumpkinImageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    func doneGrowingPumpkin(image:UIImage){
+        pumpkinImageView.image = image
+        pumpkinImageView.hidden = false
+        progressView.hidden = true
+        activityIndicator.hidden = true
+    }
+    func pumpkinGrowthProgress(progress:Float){
+        progressView.progress = progress
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        //start
-        activityIndicator.startAnimating()
-        
-        dispatch_async(Queues.userInteractive) {
-            let pumpkin = self.growPumpkin({ (p) -> () in
-                self.progress.progress = p
-                
-            })
-           
-            //updating the UI must run on UI Thread!!!
-            dispatch_async(Queues.main, { () -> Void in
-                self.pumpkinImageView.image = pumpkin
-                self.pumpkinImageView.hidden = false
-                self.activityIndicator.stopAnimating()
-            })
-            //
-        }
+        let grower = PumpkinGrower()
+        grower.growPumpkin(self)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    
-    func growPumpkin(progressBlock: (Float)->())->UIImage?{
-        for i in 0...1000000{
-            
-            let progress =  Float(i)/1000000
-            print("\(progress * 100) percent")
-           
-            if i % 100 == 0{
-                dispatch_async(Queues.main, { () -> Void in
-                    progressBlock(progress)
-                })
-                //report the progress
-               
-            }
-        }
-        return UIImage(named: "pumpkin")
-    }
 }
-

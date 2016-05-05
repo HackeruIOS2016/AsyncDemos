@@ -46,6 +46,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="Z8g-JW-hAx" id="PEb-sx-5HJ"/>
                         <outlet property="progress" destination="9Hf-5U-plG" id="hkt-9E-1Sv"/>
+                        <outlet property="progressView" destination="9Hf-5U-plG" id="nYQ-jJ-pMP"/>
                         <outlet property="pumpkinImageView" destination="FvV-Pd-Qk0" id="893-r4-jQ1"/>
                     </connections>
                 </viewController>
